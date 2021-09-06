@@ -1,7 +1,7 @@
 
 # Appendix: a note on the citable parser
 
-The `GettysburgParser` used in this demonstration works with a simple dictionary of tokens to POS tags.  The dictionary was constructed by wrapping the Python NLTK POS tagger in Julia function. This page documents how to do that so that you can generically apply the NTLK tagger to a list of tokens from Julia.
+The `GettysburgParser` used in this demonstration works with a simple dictionary of tokens to POS tags.  The dictionary was constructed by wrapping the Python NLTK POS tagger with a Julia function. This page documents how to do that so that you can generically apply the NTLK tagger to a list of tokens from Julia.
 
 
 ## Python prerequisites
@@ -19,19 +19,27 @@ Then start python, and at the python prompt,
 
 
 ```@setup parserexample
-repo = pwd() |> dirname  |> dirname
-bancroftfile = repo * "/test/data/gettysburg/bancroft.cex"
+repo = pwd() |> dirname  |> dirname |> dirname
+gburgfile = repo * "/test/data/gettysburg/gettysburgcorpus.cex"
 using CitableCorpus
-corpus = fromfile(CitableTextCorpus, bancroftfile, "|")
+corpus = fromfile(CitableTextCorpus, gburgfile, "|")
 ```
+
+!!! note
+   
+    In the `extra` directory, the script `engpos.jl` does everything documented here, and can be run from the command line from the root of the repository with `julia --project=extra/ extra/engpos.jl`
+
 
 
 In Julia, you can make the NLTK module's `tag` function available like this:
 
 ```@example parserexample
+using Conda
+Conda.add("nltk")
 using PyCall
 @pyimport nltk.tag as ptag
 ```
+
 
 Now if we have a citable corpus named `corpus`, we can use the `TextAnalysis` functions to extract a unique lexicon, and apply the NLTK tagger to it.
 
@@ -50,14 +58,3 @@ tknlist = tkns |> Iterators.flatten |> collect |> unique
 tagged = ptag.pos_tag(tknlist)
 ```
 
-
-```@example parserexample
-lines = []
-for t in tagged
-    delimited = string(t[1], ",", t[2])
-    push!(lines, delimited)
-end
-open("posdict.csv", "w") do io
-    write(io, join(lines, "\n"))
-end
-```

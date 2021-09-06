@@ -1,7 +1,7 @@
 # A pure Julia POS tagger for Bancroft's version of the Gettysburg address.
 using CSV, HTTP
 
-"""POS tagger keyed to Bancroft's text of the Gettysburg address."""
+"""POS tagger keyed to the text of the Gettysburg address."""
 struct GettysburgParser <: CitableParser
     stringparser
     data
