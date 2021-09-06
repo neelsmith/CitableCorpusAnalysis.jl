@@ -3,6 +3,9 @@ module CitableCorpusAnalysis
 using CitableText, CitableCorpus
 using TextAnalysis
 
-#include("ntlktagger.jl")
+using Documenter, DocStringExtensions
+
+include("analyticalcorpus.jl")
+include("tacorpus.jl")
 
 end # module
