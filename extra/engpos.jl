@@ -17,19 +17,11 @@ using TextAnalysis
 using CitableCorpus
 using CitableTextAnalysis
 
-
-#= Tokenize a document:
-doc = StringDocument("In the beginning, God created the heavens and the earth.")
-tkns = tokens(doc) # In TextAnalysis
-parsed = ptag.pos_tag(tkns)
-
-# Token values:
+# POS values:
 # https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
-println(join(parsed,"\n"))
-
-# See also
+#
+# Source files:
 # https://github.com/neelsmith/gettysburg
-=#
 
 
 bancroftfile = repo * "/test/data/gettysburg/bancroft.cex"
@@ -40,4 +32,15 @@ tkns = []
 for doc in tacorp.documents
     push!(tkns,tokens(doc))
 end
-tknlist = tkns |> Iterators.flatten |> collect
+tknlist = tkns |> Iterators.flatten |> collect |> unique
+tagged = ptag.pos_tag(tknlist)
+
+lines = []
+for t in tagged
+    delimited = string(t[1], ",", t[2])
+    push!(lines, delimited)
+end
+open("posdict.csv", "w") do io
+    write(io, join(lines, "\n"))
+end
+

@@ -17,6 +17,7 @@ Then start python, and at the python prompt,
 
 ## A Julia wrapper
 
+
 ```@setup parserexample
 repo = pwd() |> dirname  |> dirname
 bancroftfile = repo * "/test/data/gettysburg/bancroft.cex"
@@ -24,22 +25,39 @@ using CitableCorpus
 corpus = fromfile(CitableTextCorpus, bancroftfile, "|")
 ```
 
+
+In Julia, you can make the NLTK module's `tag` function available like this:
+
 ```@example parserexample
-using CitableTextAnalysis
+using PyCall
+@pyimport nltk.tag as ptag
+```
+
+Now if we have a citable corpus named `corpus`, we can use the `TextAnalysis` functions to extract a unique lexicon, and apply the NLTK tagger to it.
+
+
+
+```@example parserexample
+using CitableCorpusAnalysis
 using TextAnalysis
 tacorp = tacorpus(corpus)
 
 tkns = []
 for doc in tacorp.documents
-    push!(tkns,tokens(doc))
+    push!(tkns, tokens(doc))
 end
-tknlist = tkns |> Iterators.flatten |> collect
+tknlist = tkns |> Iterators.flatten |> collect |> unique
+tagged = ptag.pos_tag(tknlist)
 ```
 
 
 ```@example parserexample
-using PyCall
-@pyimport nltk.tag as ptag
-
-parsed = ptag.pos_tag(tkns)
+lines = []
+for t in tagged
+    delimited = string(t[1], ",", t[2])
+    push!(lines, delimited)
+end
+open("posdict.csv", "w") do io
+    write(io, join(lines, "\n"))
+end
 ```
