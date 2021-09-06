@@ -19,7 +19,8 @@ makedocs(
     pages = [
         "Overview" => "index.md",
         "Example" => [
-            "example/corpus.md"
+            "example/corpus.md",
+            "example/parser.md"
         ],
         "API documentation" => [
             "man/api.md"
