@@ -15,7 +15,7 @@ using PyCall
 
 using TextAnalysis
 using CitableCorpus
-using CitableTextAnalysis
+using CitableCorpusAnalysis
 
 # POS values:
 # https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
@@ -24,8 +24,8 @@ using CitableTextAnalysis
 # https://github.com/neelsmith/gettysburg
 
 
-bancroftfile = repo * "/test/data/gettysburg/bancroft.cex"
-corpus = fromfile(CitableTextCorpus, bancroftfile, "|")
+gburgfile = repo * "/test/data/gettysburg/gettysburgcorpus.cex"
+corpus = fromfile(CitableTextCorpus, gburgfile, "|")
 tacorp = tacorpus(corpus)
 
 tkns = []

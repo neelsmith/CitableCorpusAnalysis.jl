@@ -9,5 +9,6 @@ using Documenter, DocStringExtensions
 
 include("analyticalcorpus.jl")
 include("tacorpus.jl")
+include("gettysburg.jl")
 
 end # module
