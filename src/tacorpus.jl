@@ -8,6 +8,8 @@ function tacorpus(c::CitableTextCorpus)
     TextAnalysis.Corpus(docs)
 end
 
+
+#=
 """Create a lexicon (a `Dict` of tokens to counts) from a `CitableTextCorpus`
 using the `lexicon` function of the `TextAnalysis` module.
 
@@ -32,3 +34,4 @@ function dtmatrix(c::CitableTextCorpus)
 	m = dtm(sparsedtm, :dense)
     m
 end
+=#

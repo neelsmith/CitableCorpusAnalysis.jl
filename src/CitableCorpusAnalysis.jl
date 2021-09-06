@@ -11,4 +11,7 @@ include("analyticalcorpus.jl")
 include("tacorpus.jl")
 include("gettysburg.jl")
 
+export AnalyticalCorpus
+export tacorpus
+
 end # module
