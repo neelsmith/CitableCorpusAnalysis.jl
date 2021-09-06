@@ -17,7 +17,10 @@ using CitableCorpusAnalysis
 makedocs(
     sitename = "CitableCorpusAnalysis.jl",
     pages = [
-        "Home" => "index.md"
+        "Overview" => "index.md",
+        "Example" => [
+            "example/corpus.md"
+        ],
         "API documentation" => [
             "man/api.md"
         ]
