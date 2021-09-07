@@ -5,8 +5,23 @@
 
 From `CitableText` and `CitableCorpus`:
 
-- load a corpus
-- retrieve passages
+### Load a corpus
+
+In these examples, we'll work with a corpus of the extant versions of the Gettysburg Address.  We'll load it into the `CitableTextCorpus` model from a URL.
+
+```jldoctest corpus
+using CitableCorpus
+corpusurl = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/main/test/data/gettysburg/gettysburgcorpus.cex"
+corpus = fromurl(CitableTextCorpus, corpusurl, "|")
+typeof(corpus)
+
+# output
+
+CitableTextCorpus
+```
+
+
+### Retrieve passages
 
 
 Some key functions from libraries implementing `Orthography` and `CitableParser`:
