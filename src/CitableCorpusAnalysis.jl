@@ -4,6 +4,7 @@ using CitableText, CitableCorpus
 using Orthography
 using CitableParserBuilder
 using TextAnalysis
+using TopicModelsVB
 
 using Documenter, DocStringExtensions
 
