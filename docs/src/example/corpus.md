@@ -12,7 +12,7 @@ In these examples, we'll work with a corpus of the extant versions of the Gettys
 ```jldoctest corpus
 using CitableCorpus
 corpusurl = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/main/test/data/gettysburg/gettysburgcorpus.cex"
-corpus = fromurl(CitableTextCorpus, corpusurl, "|")
+corpus = corpus_fromurl(corpusurl, "|")
 typeof(corpus)
 
 # output

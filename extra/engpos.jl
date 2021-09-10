@@ -25,7 +25,7 @@ using CitableCorpusAnalysis
 
 
 gburgfile = repo * "/test/data/gettysburg/gettysburgcorpus.cex"
-corpus = fromfile(CitableTextCorpus, gburgfile, "|")
+corpus = corpus_fromfile(gburgfile, "|")
 tacorp = tacorpus(corpus)
 
 tkns = []

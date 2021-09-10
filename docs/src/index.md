@@ -33,7 +33,7 @@ using CitableCorpusAnalysis
 using CitableCorpus
 using Orthography
 
-corpus = fromurl(CitableTextCorpus, "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/main/test/data/gettysburg/gettysburgcorpus.cex", "|")
+corpus = corpus_fromurl("https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/main/test/data/gettysburg/gettysburgcorpus.cex", "|")
 orthography = simpleAscii()
 parser = CitableCorpusAnalysis.gettysburgParser()
 acorpus = AnalyticalCorpus(corpus, orthography, parser)
