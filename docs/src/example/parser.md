@@ -22,7 +22,7 @@ Then start python, and at the python prompt,
 repo = pwd() |> dirname  |> dirname |> dirname
 gburgfile = repo * "/test/data/gettysburg/gettysburgcorpus.cex"
 using CitableCorpus
-corpus = fromfile(CitableTextCorpus, gburgfile, "|")
+corpus = corpus_fromfile(gburgfile, "|")
 ```
 
 !!! note

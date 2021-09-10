@@ -1,8 +1,8 @@
 @testset begin
     f = "data/hyginus.csv"
-    c = fromfile(CitableTextCorpus, f, "#")  
+    c = corpus_fromfile(f, "#")  
     @test length(c.corpus) == 1234
-    tacorp = tacorpus(c)
+    tacorp = CitableCorpusAnalysis.tacorpus(c)
     @test length(tacorp.documents) == length(c.corpus)
 
     talex = talexicon(c)
