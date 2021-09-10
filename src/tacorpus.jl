@@ -21,10 +21,12 @@ function talexicon(c::CitableTextCorpus)
 end
 
 
-"""Creates document-term matrix in dense matrix 
+"""Creates the document-term matrix for a `CitableTextCorpus` in dense matrix 
 format.
 
 $(SIGNATURES)
+
+Note that this relies on the dictionary created by `TextAnalysis.lexicon()`.
 """
 function dtmatrix(c::CitableTextCorpus)
     tac = tacorpus(c)

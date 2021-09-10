@@ -1,3 +1,17 @@
 # API Documentation
 
-Formal API docs go here.
+
+## Types
+
+```@docs
+AnalyticalCorpus
+```
+
+## Exported functions
+
+
+```@docs
+tacorpus
+talexicon
+dtmatrix
+```
