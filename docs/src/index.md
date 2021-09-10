@@ -8,6 +8,13 @@ There are many ways to model a text corpus.  `CitableCorpusAnalysis` integrates 
 - `Corpus` in `TopicModelsVB`
 - `CitableTextCorpus` in `CitableCorpus`
 
+It also introduces a further model, the `AnalyticalCorpus`.
+
+
+!!! warning
+
+    The CitableCorpusAnalysis module is in very early stages of development, and is intended for experimental use.
+
 
 ## Overview
 
@@ -15,11 +22,11 @@ There are many ways to model a text corpus.  `CitableCorpusAnalysis` integrates 
 
 An `AnalyticalCorpus` has three components:
 
-1. a citable corpus of texts
-2. an orthographic system that can validate orthography and tokenize a citable text
-3. a citable parser, that analyses citable tokens in terms of citable lexemes and morphological or other data.
+1. a citable corpus of texts (a `CitableText.CitableTextCorpus`)
+2. an orthographic system that can validate orthography and tokenize a citable text (an `Orthography.OrthographicSystem`)
+3. a citable parser, that analyses citable tokens in terms of citable lexemes and morphological or other data (a `CitableParserBuilder.CitableParser`)
 
-Functions working an `AnalyticalCorpus` can 
+Functions working an `AnalyticalCorpus` can tokenize a corpus, analyze its tokens with a `CitableParser`, and can apply the corpus analytical functions of a `TextAnalysis.Corpus` and a `TopicsModelsVB.Corpus` to any citable text content.
 
 ## Example pages
 
@@ -34,7 +41,7 @@ using CitableCorpus
 using Orthography
 
 corpus = corpus_fromurl("https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/main/test/data/gettysburg/gettysburgcorpus.cex", "|")
-orthography = simpleAscii()
+orthography = Orthography.simpleAscii()
 parser = CitableCorpusAnalysis.gettysburgParser()
 acorpus = AnalyticalCorpus(corpus, orthography, parser)
 typeof(acorpus)
@@ -43,6 +50,4 @@ typeof(acorpus)
 
 AnalyticalCorpus
 ```
-
-
 

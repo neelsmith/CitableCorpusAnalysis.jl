@@ -14,7 +14,7 @@ include("tmcorpus.jl")
 include("gettysburg.jl")
 
 export AnalyticalCorpus
-export tacorpus
+export tacorpus, talexicon, dtmatrix
 export tmcorpus
 
 end # module
