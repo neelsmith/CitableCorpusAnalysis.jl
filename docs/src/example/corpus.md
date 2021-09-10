@@ -23,10 +23,18 @@ CitableTextCorpus
 
 ### Retrieve passages
 
+## Orthographically aware parsing
 
 Some key functions from libraries implementing `Orthography` and `CitableParser`:
 
 - orthography: validation
+
+```jldoctest corpus
+using Othography
+orthography = simpleAscii()
+
+```
+
 - orthography: tokenization
 - morphological analysis
 

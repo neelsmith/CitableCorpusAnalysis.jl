@@ -13,7 +13,7 @@ BANCROFT_URL = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysi
 """Instantiate a `GettysburgParser`.
 """
 function gettysburgParser() 
-    dict = CSV.File(HTTP.get(BANCROFT_URL).body) |> Dict
+    dict = CSV.File(HTTP.get(CitableCorpusAnalysis.BANCROFT_URL).body) |> Dict
     GettysburgParser(parsestring, dict)
 end
 
@@ -23,6 +23,6 @@ Note that since data is a vararg, we can find the dictionary
 in data[1].
 """
 function parsestring(s::AbstractString, data)
-    dict = data[1]
+    dict = data[1][1]
     s in keys(dict) ? dict[s] : nothing
 end
