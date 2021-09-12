@@ -72,15 +72,15 @@ AnalyticalCorpus
 
 ## The analyses
 
-The `analyzecorpus` function requires an `AnalyticalCorpus` as an argument. It returns a Vector of pairings that associate a `CitableNode` (from the `CitableText` module) with a Vector of `Analysis` objects (from the `CitableParserBuilder` module).
+The `analyzecorpus` function requires an `AnalyticalCorpus` as an argument. It returns a Vector of pairings that associate a `CitableNode` (from the `CitableText` module) with a Vector of `Analysis` objects (from the `CitableParserBuilder` module).  Our corpus has a total of 1506 tokens.
 
 ```jldoctest corpus
-analyses = analyzecorpus(acorpus)
+analyses = analyzecorpus(acorpus, parser.data)
 length(analyses)
 
 # output
 
-1471
+1506
 ```
 
 

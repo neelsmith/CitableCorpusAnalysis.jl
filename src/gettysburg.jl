@@ -29,8 +29,12 @@ end
 Note that since `data` is defined in the `CitableParserBuilder` model as a  vararg, the dictionary itself will be data[1].
 """
 function parsestring(s::AbstractString, data)
-    dict = data[1][1]
+    dict = data[1][1][1]
+
     objid = s in keys(dict) ? dict[s] : "UNANALYZED"
+    if objid == "UNANALYZED"
+        @warn("$s not found in $(typeof(dict))")
+    end
     formurn = FormUrn("gburg.$objid")
     lexurn = LexemeUrn("gburg.$s")
     ruleurn = RuleUrn("gburg.all")
