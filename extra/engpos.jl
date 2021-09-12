@@ -24,7 +24,7 @@ using CitableCorpusAnalysis
 # https://github.com/neelsmith/gettysburg
 
 
-gburgfile = repo * "/test/data/gettysburg/gettysburgcorpus.cex"
+gburgfile = repo * "/test/data/gettysburg/gettysburgcorpus.csv"
 corpus = corpus_fromfile(gburgfile, "|")
 tacorp = tacorpus(corpus)
 

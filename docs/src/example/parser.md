@@ -19,8 +19,11 @@ Then start python, and at the python prompt,
 
 
 ```@setup parserexample
+# If you're in a system with python accessible
+# and the nltk module installed, you can actually
+# execute all the code blocks on this page.
 repo = pwd() |> dirname  |> dirname |> dirname
-gburgfile = repo * "/test/data/gettysburg/gettysburgcorpus.cex"
+gburgfile = repo * "/test/data/gettysburg/gettysburgcorpus.csv"
 using CitableCorpus
 corpus = corpus_fromfile(gburgfile, "|")
 ```
@@ -33,7 +36,7 @@ corpus = corpus_fromfile(gburgfile, "|")
 
 In Julia, you can make the NLTK module's `tag` function available like this:
 
-```@example parserexample
+```
 using Conda
 Conda.add("nltk")
 using PyCall
@@ -45,7 +48,7 @@ Now if we have a citable corpus named `corpus`, we can use the `TextAnalysis` fu
 
 
 
-```@example parserexample
+```
 using CitableCorpusAnalysis
 using TextAnalysis
 tacorp = tacorpus(corpus)

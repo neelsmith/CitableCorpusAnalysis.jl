@@ -20,12 +20,12 @@ makedocs(
         "Overview" => "index.md",
         "Example" => [
             "example/corpus.md",
+            "example/profiling.md",
             "example/parser.md"
         ],
-        "API documentation" => [
-            "man/api.md"
-        ]
+        "API documentation" =>  "man/api.md"
     ]
+
 )
 
 
