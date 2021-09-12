@@ -5,11 +5,9 @@
     ortho = simpleAscii()
     parser = CitableCorpusAnalysis.gettysburgParser()
     acorpus = AnalyticalCorpus(c,ortho,parser)
-    #strings = tokenvalues(acorpus.orthography, acorpus.corpus)
-    #parser.data
-    #dict = CSV.File(HTTP.get(CitableCorpusAnalysisBANCROFT_URL).body) |> Dict
-    #=
-    wdlist = tokenvalues(ortho,c)
-    =#
     analyses = CitableCorpusAnalysis.analyzecorpus(acorpus, parser.data)
+
+    wdlist = tokenvalues(ortho,c)
+    tokenized = tokenizedcorpus(ortho,c)
+    @test length(analyses) == length(tokenized.corpus)
 end

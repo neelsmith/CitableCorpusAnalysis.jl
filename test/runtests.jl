@@ -7,5 +7,5 @@ using Test
 
 
 include("test_gettysburg.jl")
-#include("test_ta.jl")
+include("test_ta.jl")
 #include("test_tm.jl")

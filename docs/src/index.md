@@ -5,7 +5,6 @@
 There are many ways to model a text corpus.  `CitableCorpusAnalysis` integrates the models from these Julia modules:
 
 - `Corpus` in `TextAnalysis`
-- `Corpus` in `TopicModelsVB`
 - `CitableTextCorpus` in `CitableCorpus`
 
 It also introduces a further model, the `AnalyticalCorpus`.
@@ -26,7 +25,7 @@ An `AnalyticalCorpus` has three components:
 2. an orthographic system that can validate orthography and tokenize a citable text (an `Orthography.OrthographicSystem`)
 3. a citable parser, that analyses citable tokens in terms of citable lexemes and morphological or other data (a `CitableParserBuilder.CitableParser`)
 
-Functions working an `AnalyticalCorpus` can tokenize a corpus, analyze its tokens with a `CitableParser`, and can apply the corpus analytical functions of a `TextAnalysis.Corpus` and a `TopicsModelsVB.Corpus` to any citable text content.
+Functions working an `AnalyticalCorpus` can tokenize a corpus, analyze its tokens with a `CitableParser`, and can apply the corpus analytical functions of a `TextAnalysis.Corpus` to any citable text content.
 
 ## Example pages
 

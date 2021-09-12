@@ -17,12 +17,17 @@ function gettysburgParser()
     GettysburgParser(parsestring, dict)
 end
 
-"""Lookup String `s` in dictionary.
+"""Parse String `s` by looking it up in a given dictionary.
 
-Note that since data is a vararg, we can find the dictionary 
-in data[1].
+Note that since `data` is a vararg, the dictionary 
+will be data[1].
 """
 function parsestring(s::AbstractString, data)
     dict = data[1][1]
-    s in keys(dict) ? dict[s] : nothing
+    objid = s in keys(dict) ? dict[s] : "UNANALYZED"
+    formurn = FormUrn(s"gburg.${objid}")
+    lexurn = LexemeUrn("gburg.$s")
+    ruleurn = RuleUrn("gburg.all")
+    stemurn = StemUrn("gburg.all")
+    [Analysis(s, lexurn, formurn, stemurn, ruleurn)]
 end
