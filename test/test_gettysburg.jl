@@ -1,6 +1,6 @@
 
 @testset "Test analyzing a corpus" begin
-    f = "data/gettysburg/gettysburgcorpus.cex"
+    f = "data/gettysburg/gettysburgcorpus.csv"
     c = corpus_fromfile(f, "|")
     ortho = simpleAscii()
     parser = CitableCorpusAnalysis.gettysburgParser()

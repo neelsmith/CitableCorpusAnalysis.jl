@@ -12,7 +12,7 @@ We can load the source data into the `CitableTextCorpus` model from a URL.
 
 ```jldoctest corpus
 using CitableCorpus
-corpusurl = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/main/test/data/gettysburg/gettysburgcorpus.cex"
+corpusurl = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/main/test/data/gettysburg/gettysburgcorpus.csv"
 corpus = corpus_fromurl(corpusurl, "|")
 typeof(corpus)
 
