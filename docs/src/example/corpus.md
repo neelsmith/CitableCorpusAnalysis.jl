@@ -1,14 +1,14 @@
-# Modelling a text corpus
+# Analyzing a text corpus
 
 
-## Background
+## Summary
 
-From `CitableText` and `CitableCorpus`:
-
-### Load a corpus
+We start with a corpus citable by CTS URN. In these examples, we'll work with a citable corpus of the extant versions of the Gettysburg Address.  We will then construct an `AnalyticalCorpus` that matches this citable corpus with an orthography and a parser.  With this in hand, we can create a full, morphologically aware analysis of each token in the corpus with a single function call.
 
 
-In these examples, we'll work with a corpus of the extant versions of the Gettysburg Address.  We'll load it into the `CitableTextCorpus` model from a URL.
+### Load the source corpus
+
+We can load the source data into the `CitableTextCorpus` model from a URL.
 
 ```jldoctest corpus
 using CitableCorpus
@@ -21,14 +21,17 @@ typeof(corpus)
 CitableTextCorpus
 ```
 
-
 ### Retrieve passages
 
-## Orthographically aware parsing
 
-Some key functions from libraries implementing `Orthography` and `CitableParser`:
+TBA
 
-- orthography: validation
+
+## Constructing an `AnalyticalCorpus`
+
+### Orthography
+
+The `Orthography` module includes a simple ASCII orthography that we can use with our Gettsyburg corpus.
 
 ```jldoctest corpus
 using Orthography
@@ -40,5 +43,47 @@ typeof(orthography) |> supertype
 OrthographicSystem
 ```
 
-- orthography: tokenization
-- morphological analysis
+### Morphology
+
+The `CitableCorpusAnalysis` module includes an implementation of the `CitableParser` abstraction that can parse tokens in the Gettysburg Address to their corresponding Penn treebank POS code.  (For details on how the parser was constructed, see the appendix to this documentation.)
+
+```jldoctest corpus
+using CitableCorpusAnalysis
+parser = CitableCorpusAnalysis.gettysburgParser()
+typeof(parser) |> supertype
+
+# output
+
+CitableParserBuilder.CitableParser
+```
+
+### The analytical corpus
+
+Our analytical corpus associates these three components.
+
+```jldoctest corpus
+acorpus = AnalyticalCorpus(corpus, orthography, parser)
+typeof(acorpus)
+
+# output
+
+AnalyticalCorpus
+```
+
+## The analyses
+
+The `analyzecorpus` function requires an `AnalyticalCorpus` as an argument. It returns a Vector of pairings that associate a `CitableNode` (from the `CitableText` module) with a Vector of `Analysis` objects (from the `CitableParserBuilder` module).
+
+```jldoctest corpus
+analyses = analyzecorpus(acorpus)
+length(analyses)
+
+# output
+
+1471
+```
+
+
+### Additional arguments
+
+This may be followed by a variable argument list that will passed along to the parsing functions it applies. 
