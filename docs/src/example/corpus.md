@@ -86,4 +86,13 @@ length(analyses)
 
 ### Additional arguments
 
-This may be followed by a variable argument list that will passed along to the parsing functions it applies. 
+This may be followed by an optional `data` parameter that will passed along to the parsing functions it applies.  Here, by passing along a dictionary that the parsing function can use, we can get better performance that loading the entire dictionary for each individual parse.
+
+```jldoctest corpus
+fastanalyses = analyzecorpus(acorpus, parser.data)
+length(fastanalyses)
+
+# output
+
+1506
+```
