@@ -72,18 +72,27 @@ AnalyticalCorpus
 
 ## The analyses
 
-The `analyzecorpus` function requires an `AnalyticalCorpus` as an argument. It returns a Vector of pairings that associate a `CitableNode` (from the `CitableText` module) with a Vector of `Analysis` objects (from the `CitableParserBuilder` module).
+The `analyzecorpus` function requires an `AnalyticalCorpus` as an argument. It returns a Vector of pairings that associate a `CitableNode` (from the `CitableText` module) with a Vector of `Analysis` objects (from the `CitableParserBuilder` module).  Our corpus has a total of 1506 tokens.
 
 ```jldoctest corpus
-analyses = analyzecorpus(acorpus)
+analyses = analyzecorpus(acorpus, parser.data)
 length(analyses)
 
 # output
 
-1471
+1506
 ```
 
 
 ### Additional arguments
 
-This may be followed by a variable argument list that will passed along to the parsing functions it applies. 
+This may be followed by an optional `data` parameter that will passed along to the parsing functions it applies.  Here, by passing along a dictionary that the parsing function can use, we can get better performance that loading the entire dictionary for each individual parse.
+
+```jldoctest corpus
+fastanalyses = analyzecorpus(acorpus, parser.data)
+length(fastanalyses)
+
+# output
+
+1506
+```
