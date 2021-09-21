@@ -11,7 +11,7 @@ end
 
 
 """Analyze all tokens in a corpus.  The result is a list of pairings of a 
-`CitableNode` with a (possibly empty) Vector of `Analysis` objects.
+`CitablePassage` with a (possibly empty) Vector of `Analysis` objects.
 
 $(SIGNATURES)
 
