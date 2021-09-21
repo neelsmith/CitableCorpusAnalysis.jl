@@ -1,6 +1,6 @@
 @testset "Test builidng Topic Model corpus" begin
-    f = "data/hyginus.csv"
-    c = corpus_fromfile(f, "#") 
+    f = "data/hyginus.cex"
+    c = read(f, String) |> corpus_fromcex
     tmcorp = tmcorpus(c)
-    @test length(tmcorp.docs) == length(c.corpus)
+    @test length(tmcorp.docs) == length(c.passages)
 end

@@ -33,9 +33,9 @@ function parsestring(s::AbstractString, data)
     if objid == "UNANALYZED"
         #@warn("$s not found in $(typeof(data))")
     end
-    formurn = FormUrn("gburg.$objid")
-    lexurn = LexemeUrn("gburg.$s")
-    ruleurn = RuleUrn("gburg.all")
-    stemurn = StemUrn("gburg.all")
+    formurn = FormUrn("gburgform.$objid")
+    lexurn = LexemeUrn("gburglex.$s")
+    ruleurn = RuleUrn("gburgrule.all")
+    stemurn = StemUrn("gburgstem.all")
     [Analysis(s, lexurn, formurn, stemurn, ruleurn)]
 end

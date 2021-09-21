@@ -18,12 +18,12 @@ Then start python, and at the python prompt,
 ## A Julia wrapper
 
 
-```@setup parserexample
+```
 # If you're in a system with python accessible
 # and the nltk module installed, you can actually
 # execute all the code blocks on this page.
 repo = pwd() |> dirname  |> dirname |> dirname
-gburgfile = repo * "/test/data/gettysburg/gettysburgcorpus.csv"
+gburgfile = repo * "/test/data/gettysburg/gettysburgcorpus.cex"
 using CitableCorpus
 corpus = corpus_fromfile(gburgfile, "|")
 ```

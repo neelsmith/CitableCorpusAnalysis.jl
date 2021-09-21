@@ -3,17 +3,18 @@
 
 ## Summary
 
-We start with a corpus citable by CTS URN. In these examples, we'll work with a citable corpus of the extant versions of the Gettysburg Address.  We will then construct an `AnalyticalCorpus` that matches this citable corpus with an orthography and a parser.  With this in hand, we can create a full, morphologically aware analysis of each token in the corpus with a single function call.
+We start with a corpus citable by CTS URN. In these examples, we'll work with a citable corpus of [the five extant versions of the Gettysburg Address](http://www.abrahamlincolnonline.org/lincoln/speeches/gettysburg.htm).  We will then construct an `AnalyticalCorpus` that matches this citable corpus with an orthography and a parser.  With this in hand, we can create a full, morphologically aware analysis of each token in the corpus with a single function call.
 
 
 ### Load the source corpus
 
-We can load the source data into the `CitableTextCorpus` model from a URL.
+We can load the source data into the `CitableTextCorpus` model from a URL.  The `corpus_cex` function works on string data, so we will use standard Julia methods to load a String from the URL.
 
 ```jldoctest corpus
 using CitableCorpus
-corpusurl = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/main/test/data/gettysburg/gettysburgcorpus.csv"
-corpus = corpus_fromurl(corpusurl, "|")
+using HTTP
+corpusurl = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/dev/test/data/gettysburg/gettysburgcorpus.cex"
+corpus = HTTP.get(corpusurl).body |> String  |> corpus_fromcex
 typeof(corpus)
 
 # output
@@ -21,10 +22,35 @@ typeof(corpus)
 CitableTextCorpus
 ```
 
-### Retrieve passages
+### Aside: working with selections
 
+You can use any of the functions of the `CitableCorpus` module to work with selections from a citable corpus.  E.g., you can retrieve selected passages, or select a complete document from the corpus
 
-TBA
+```jldoctest corpus
+using CitableText
+rangeUrn = CtsUrn("urn:cts:citedemo:gburg.nicolay.v2:1-2")
+rangePassages = retrieve(rangeUrn, corpus)
+
+# output
+
+2-element Vector{Any}:
+ <urn:cts:citedemo:gburg.nicolay.v2:1> Four score and seven years ago our fathers brought forth, upon this continent, a new nation, conceived in liberty, and dedicated to the proposition that all men are created equal.
+ <urn:cts:citedemo:gburg.nicolay.v2:2> Now we are engaged in a great civil war, testing whether that nation, or any nation so conceived, and so dedicated, can long endure. We are met on a great battle field of that war. We come to dedicate a portion of it, as a final resting place for those who died here, that the nation might live. This we may, in all propriety do.
+```
+
+```jldoctest corpus
+hayUrn = CtsUrn("urn:cts:citedemo:gburg.hay.v2:")
+hay = document(hayUrn, corpus)
+
+# output
+
+"Citable document <urn:cts:citedemo:gburg.hay.v2:> 4 citable passages"
+```
+
+!!! note
+
+    See the [documentation for the `CitableCorpus` module](https://cite-architecture.github.io/CitableCorpus.jl/stable/) to learn more about manipulating citable documents and corpora.
+
 
 
 ## Constructing an `AnalyticalCorpus`
@@ -72,7 +98,9 @@ AnalyticalCorpus
 
 ## The analyses
 
-The `analyzecorpus` function requires an `AnalyticalCorpus` as an argument. It returns a Vector of pairings that associate a `CitableNode` (from the `CitableText` module) with a Vector of `Analysis` objects (from the `CitableParserBuilder` module).  Our corpus has a total of 1506 tokens.
+The `analyzecorpus` function requires an `AnalyticalCorpus` as an argument. It first creates a tokenized edition, then analyses each token. It returns a Vector of `AnalyzedToken`s, where each `CitablePassage` is associated with a (possibly empty) Vector of `Analysis` objects.
+
+Our corpus has a total of 1506 tokens, so the result will have 1506 `AnalyzedToken`s.
 
 ```jldoctest corpus
 analyses = analyzecorpus(acorpus, parser.data)
@@ -83,10 +111,17 @@ length(analyses)
 1506
 ```
 
+```jldoctest corpus
+analyses[1] |> typeof
+
+# output
+
+AnalyzedToken
+```
 
 ### Additional arguments
 
-This may be followed by an optional `data` parameter that will passed along to the parsing functions it applies.  Here, by passing along a dictionary that the parsing function can use, we can get better performance that loading the entire dictionary for each individual parse.
+The `analyzecorpus` function allows an optional `data` parameter that will passed along to the parsing functions it applies.  In this example, the `GettysburgParser` can use a dictionary of analyses to get better performance, since it otherwise loads the entire dictionary for each individual parse.
 
 ```jldoctest corpus
 fastanalyses = analyzecorpus(acorpus, parser.data)

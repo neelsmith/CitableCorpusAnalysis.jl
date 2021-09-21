@@ -1,8 +1,8 @@
 # CitableCorpusAnalysis.jl
 
-> Tokenize and analyze a citable text corpus.
+> *Tokenize and analyze a citable text corpus*.
 
-There are many ways to model a text corpus.  `CitableCorpusAnalysis` integrates the models from these Julia modules:
+There are many ways to model a text corpus.  `CitableCorpusAnalysis` integrates models from these Julia modules:
 
 - `Corpus` in `TextAnalysis`
 - `CitableTextCorpus` in `CitableCorpus`
@@ -10,12 +10,7 @@ There are many ways to model a text corpus.  `CitableCorpusAnalysis` integrates 
 It also introduces a further model, the `AnalyticalCorpus`.
 
 
-!!! warning
-
-    The CitableCorpusAnalysis module is in very early stages of development, and is intended for experimental use.
-
-
-## Overview
+## Overview of an analytical corpus
 
 
 
@@ -25,7 +20,7 @@ An `AnalyticalCorpus` has three components:
 2. an orthographic system that can validate orthography and tokenize a citable text (an `Orthography.OrthographicSystem`)
 3. a citable parser, that analyses citable tokens in terms of citable lexemes and morphological or other data (a `CitableParserBuilder.CitableParser`)
 
-Functions working an `AnalyticalCorpus` can tokenize a corpus, analyze its tokens with a `CitableParser`, and can apply the corpus analytical functions of a `TextAnalysis.Corpus` to any citable text content.
+Functions working with an `AnalyticalCorpus` can tokenize a corpus, analyze its tokens with a `CitableParser`, and can apply the corpus analytical functions of a `TextAnalysis.Corpus` to any citable text content.
 
 ## Example pages
 
@@ -38,8 +33,11 @@ The following pages walk through examples using a small corpus comprising all th
 using CitableCorpusAnalysis
 using CitableCorpus
 using Orthography
-
-corpus = corpus_fromurl("https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/main/test/data/gettysburg/gettysburgcorpus.csv", "|")
+using HTTP
+# Load a CitableCorpus from a URL:
+url = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/dev/test/data/gettysburg/gettysburgcorpus.cex"
+corpus = HTTP.get(url).body |> String  |> corpus_fromcex
+# Instantiate an orthographic system and parser
 orthography = Orthography.simpleAscii()
 parser = CitableCorpusAnalysis.gettysburgParser()
 acorpus = AnalyticalCorpus(corpus, orthography, parser)

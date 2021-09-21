@@ -4,7 +4,7 @@
 $(SIGNATURES)
 """
 function tacorpus(c::CitableTextCorpus)
-    docs = map(cn -> StringDocument(cn.text), c.corpus)
+    docs = map(cn -> StringDocument(cn.text), c.passages)
     TextAnalysis.Corpus(docs)
 end
 
@@ -19,7 +19,6 @@ function talexicon(c::CitableTextCorpus)
     update_lexicon!(corp)
     lexicon(corp)
 end
-
 
 """Creates the document-term matrix for a `CitableTextCorpus` in dense matrix 
 format.

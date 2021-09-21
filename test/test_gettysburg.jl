@@ -1,7 +1,7 @@
 
 @testset "Test analyzing a corpus" begin
-    f = "data/gettysburg/gettysburgcorpus.csv"
-    c = corpus_fromfile(f, "|")
+    f = "data/gettysburg/gettysburgcorpus.cex"
+    c = read(f, String) |> corpus_fromcex
     ortho = simpleAscii()
     parser = CitableCorpusAnalysis.gettysburgParser()
     acorpus = AnalyticalCorpus(c,ortho,parser)
@@ -9,5 +9,23 @@
 
     wdlist = tokenvalues(ortho,c)
     tokenized = tokenizedcorpus(ortho,c)
-    @test length(analyses) == length(tokenized.corpus)
+    @test length(analyses) == length(tokenized.passages)
+    @test isa(analyses[1], AnalyzedToken)
+end
+
+
+
+@testset "Test serializing an analysis list" begin
+    f = "data/gettysburg/gettysburgcorpus.cex"
+    c = read(f, String) |> corpus_fromcex
+    ortho = simpleAscii()
+    parser = CitableCorpusAnalysis.gettysburgParser()
+    acorpus = AnalyticalCorpus(c,ortho,parser)
+    analyses = CitableCorpusAnalysis.analyzecorpus(acorpus, parser.data)
+    registry = Dict(
+        "gburglex" => "urn:cite2:citedemo:gburglex.v1:",
+        "gburgform" => "urn:cite2:citedemo:gburgform.v1:",
+        "gburgrule" => "urn:cite2:citedemo:gburgrule.v1:",
+        "gburgstem" => "urn:cite2:citedemo:gburgstem.v1:"
+    )
 end

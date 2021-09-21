@@ -10,28 +10,34 @@ struct AnalyticalCorpus
 end
 
 
-"""Analyze all tokens in a corpus.
+"""Analyze all tokens in a corpus.  The result is a list of pairings of a 
+`CitablePassage` with a (possibly empty) Vector of `Analysis` objects.
 
 $(SIGNATURES)
 
 First analyze list of unique tokens into a dictionary.
 Then analyze each token successively.
 """
-function analyzecorpus(ac::AnalyticalCorpus, data...)
+function analyzecorpus(ac::AnalyticalCorpus, data)
     wdlist = tokenvalues(ac.orthography,ac.corpus)
     parses = parsewordlist(ac.parser, wdlist, data)
     pairs = zip(wdlist, parses) |> collect |> Dict
     tokenized = tokenizedcorpus(ac.orthography,ac.corpus)
 
     analyses = []
-    for cn in tokenized.corpus
+    for cn in tokenized.passages
         if haskey(pairs, cn.text)
-            #@info("Parse exists for ", cn.text)
-            push!(analyses, (cn, pairs[cn.text]))
+            push!(analyses, AnalyzedToken(cn, pairs[cn.text]))
         else
-           push!(analyses, (cn, []))
-           #@info("NO PARSE for ", cn.text)
+            # pair node with empty Vector if no
+            # analyses found:
+           push!(analyses, AnalyzedToken(cn, []))
         end
     end
     analyses
+end
+
+
+function serialize_analyses(analysispairs, register, delimiter = "|")
+
 end
