@@ -35,8 +35,10 @@ The following pages walk through examples using a small corpus comprising all th
 using CitableCorpusAnalysis
 using CitableCorpus
 using Orthography
+using HTTP
 
-corpus = corpus_fromurl("https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/main/test/data/gettysburg/gettysburgcorpus.cex", "|")
+url = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/dev/test/data/gettysburg/gettysburgcorpus.cex"
+corpus = HTTP.get(url).body |> String  |> corpus_fromcex
 orthography = Orthography.simpleAscii()
 parser = CitableCorpusAnalysis.gettysburgParser()
 acorpus = AnalyticalCorpus(corpus, orthography, parser)
