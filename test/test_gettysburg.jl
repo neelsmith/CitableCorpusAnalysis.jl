@@ -10,6 +10,7 @@
     wdlist = tokenvalues(ortho,c)
     tokenized = tokenizedcorpus(ortho,c)
     @test length(analyses) == length(tokenized.passages)
+    @test isa(analyses[1], AnalyzedToken)
 end
 
 

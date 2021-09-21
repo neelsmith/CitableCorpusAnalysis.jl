@@ -20,7 +20,6 @@ function talexicon(c::CitableTextCorpus)
     lexicon(corp)
 end
 
-
 """Creates the document-term matrix for a `CitableTextCorpus` in dense matrix 
 format.
 

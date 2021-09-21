@@ -98,9 +98,9 @@ AnalyticalCorpus
 
 ## The analyses
 
-The `analyzecorpus` function requires an `AnalyticalCorpus` as an argument. It first creates a tokenized edition, then analyses each token. It returns a Vector of pairings that associate a `CitablePassage` (from the `CitableText` module) with a Vector of `Analysis` objects (from the `CitableParserBuilder` module), where each `CitablePassage` is a node in the tokenized edition.
+The `analyzecorpus` function requires an `AnalyticalCorpus` as an argument. It first creates a tokenized edition, then analyses each token. It returns a Vector of `AnalyzedToken`s, where each `CitablePassage` is associated with a (possibly empty) Vector of `Analysis` objects.
 
-Our corpus has a total of 1506 tokens, so the result will have 1506 pairings of tokens with analysis vectors.
+Our corpus has a total of 1506 tokens, so the result will have 1506 `AnalyzedToken`s.
 
 ```jldoctest corpus
 analyses = analyzecorpus(acorpus, parser.data)
@@ -111,16 +111,17 @@ length(analyses)
 1506
 ```
 
-We can check that the number of analyzed tokens matches the number of tokens in our corpus.
-
-
 ```jldoctest corpus
+analyses[1] |> typeof
 
+# output
+
+AnalyzedToken
 ```
 
 ### Additional arguments
 
-This may be followed by an optional `data` parameter that will passed along to the parsing functions it applies.  Here, by passing along a dictionary that the parsing function can use, we can get better performance that loading the entire dictionary for each individual parse.
+The `analyzecorpus` function allows an optional `data` parameter that will passed along to the parsing functions it applies.  In this example, the `GettysburgParser` can use a dictionary of analyses to get better performance, since it otherwise loads the entire dictionary for each individual parse.
 
 ```jldoctest corpus
 fastanalyses = analyzecorpus(acorpus, parser.data)
@@ -130,7 +131,3 @@ length(fastanalyses)
 
 1506
 ```
-
-### Serializing the analyses
-
-The result of analyzing a corpus is a list of pairs: each `CitablePassage` in the corpus is paired with a (possibly empty) Vector of `Analysis` objects.  This is serialized as a flat list of `CitablePassage` plus one `Analysis` object, allowing each `CitablePassage` to be repeated as many times as there are analyses for that node.

@@ -27,11 +27,11 @@ function analyzecorpus(ac::AnalyticalCorpus, data)
     analyses = []
     for cn in tokenized.passages
         if haskey(pairs, cn.text)
-            push!(analyses, (cn, pairs[cn.text]))
+            push!(analyses, AnalyzedToken(cn, pairs[cn.text]))
         else
             # pair node with empty Vector if no
             # analyses found:
-           push!(analyses, (cn, []))
+           push!(analyses, AnalyzedToken(cn, []))
         end
     end
     analyses
