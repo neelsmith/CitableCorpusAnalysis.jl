@@ -8,7 +8,7 @@ We start with a corpus citable by CTS URN. In these examples, we'll work with a 
 
 ### Load the source corpus
 
-We can load the source data into the `CitableTextCorpus` model from a URL.
+We can load the source data into the `CitableTextCorpus` model from a URL.  The `corpus_cex` function works on string data, so we will use standard Julia methods to load a String from the URL.
 
 ```jldoctest corpus
 using CitableCorpus
@@ -22,9 +22,19 @@ typeof(corpus)
 CitableTextCorpus
 ```
 
-### Retrieve passages
+### Workinmg with selections
+
+You can use any of the functions of the `CitableCorpus` module to work with selections from a citable corpus.  E.g., you can retrieve selected passages.
+
+```jldoctest corpus
+using CitableText
+rangeUrn = CtsUrn("urn:cts:citedemo:gburg.nicolay.v2:1-2")
+rangePassages = retrieve(rangeUrn, corpus)
+
+```
 
 
+(See the [documentation for the `CitableCorpus` module](https://cite-architecture.github.io/CitableCorpus.jl/stable/) to learn more.)
 TBA
 
 
