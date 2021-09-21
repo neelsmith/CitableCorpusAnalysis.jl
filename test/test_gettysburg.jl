@@ -15,7 +15,7 @@ end
 
 
 @testset "Test serializing an analysis list" begin
-    f = "data/gettysburg/gettysburgcorpus.csv"
+    f = "data/gettysburg/gettysburgcorpus.cex"
     c = read(f, String) |> corpus_fromcex
     ortho = simpleAscii()
     parser = CitableCorpusAnalysis.gettysburgParser()

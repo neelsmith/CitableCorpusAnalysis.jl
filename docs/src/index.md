@@ -36,7 +36,7 @@ using CitableCorpusAnalysis
 using CitableCorpus
 using Orthography
 
-corpus = corpus_fromurl("https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/main/test/data/gettysburg/gettysburgcorpus.csv", "|")
+corpus = corpus_fromurl("https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/main/test/data/gettysburg/gettysburgcorpus.cex", "|")
 orthography = Orthography.simpleAscii()
 parser = CitableCorpusAnalysis.gettysburgParser()
 acorpus = AnalyticalCorpus(corpus, orthography, parser)
