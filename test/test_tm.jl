@@ -2,5 +2,5 @@
     f = "data/hyginus.csv"
     c = corpus_fromfile(f, "#") 
     tmcorp = tmcorpus(c)
-    @test length(tmcorp.docs) == length(c.corpus)
+    @test length(tmcorp.docs) == length(c.passages)
 end

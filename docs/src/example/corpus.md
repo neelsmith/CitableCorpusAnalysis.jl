@@ -72,7 +72,9 @@ AnalyticalCorpus
 
 ## The analyses
 
-The `analyzecorpus` function requires an `AnalyticalCorpus` as an argument. It returns a Vector of pairings that associate a `CitableNode` (from the `CitableText` module) with a Vector of `Analysis` objects (from the `CitableParserBuilder` module).  Our corpus has a total of 1506 tokens.
+The `analyzecorpus` function requires an `AnalyticalCorpus` as an argument. It first creates a tokenized edition, then analyses each token. It returns a Vector of pairings that associate a `CitableNode` (from the `CitableText` module) with a Vector of `Analysis` objects (from the `CitableParserBuilder` module), where each `CitableNode` is a node in the tokenized edition.
+
+Our corpus has a total of 1506 tokens, so the result will have 1506 pairings of tokens with analysis vectors.
 
 ```jldoctest corpus
 analyses = analyzecorpus(acorpus, parser.data)
@@ -96,3 +98,7 @@ length(fastanalyses)
 
 1506
 ```
+
+### Serializing the analyses
+
+The result of analyzing a corpus is a list of pairs: each `CitableNode` in the corpus is paired with a (possibly empty) Vector of `Analysis` objects.  This is serialized as a flat list of `CitableNode` plus one `Analysis` object, allowing each `CitableNode` to be repeated as many times as there are analyses for that node.

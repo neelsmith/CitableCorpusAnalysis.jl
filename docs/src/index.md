@@ -10,9 +10,6 @@ There are many ways to model a text corpus.  `CitableCorpusAnalysis` integrates 
 It also introduces a further model, the `AnalyticalCorpus`.
 
 
-!!! warning
-
-    The CitableCorpusAnalysis module is in very early stages of development, and is intended for experimental use.
 
 
 ## Overview
