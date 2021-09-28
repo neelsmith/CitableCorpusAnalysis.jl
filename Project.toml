@@ -1,7 +1,7 @@
 name = "CitableCorpusAnalysis"
 uuid = "c8e18afb-d0b9-4a73-9e55-d0fe0b502904"
 authors = ["Neel Smith <dnsmith.neel@gmail.com>"]
-version = "0.4.0"
+version = "0.4.1"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
@@ -20,8 +20,8 @@ TopicModelsVB = "dad468f8-6d63-5d40-b2c4-48631a3ed0cf"
 
 [compat]
 CSV = "0.9"
-CitableCorpus = "0.5"
-CitableParserBuilder = "0.14"
+CitableCorpus = "0.6"
+CitableParserBuilder = "0.15"
 CitableText = "0.11"
 Conda = "1"
 DocStringExtensions = "0.8"
