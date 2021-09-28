@@ -1,4 +1,4 @@
-# For use in testing and demonstartsions: 
+# For use in testing and demonstrations: 
 # pure-Julia POS tagger for the corpus of all
 # extant versions of the Gettysburg address.
 #
