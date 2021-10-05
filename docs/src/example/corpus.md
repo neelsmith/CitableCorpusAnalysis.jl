@@ -93,7 +93,7 @@ typeof(acorpus)
 
 # output
 
-AnalyticalCorpus
+CitableParserBuilder.AnalyzedToken
 ```
 
 ## The analyses
