@@ -20,8 +20,7 @@ makedocs(
         "Overview" => "index.md",
         "Example" => [
             "example/corpus.md",
-            "example/profiling.md",
-            "example/parser.md"
+            "example/profiling.md"
         ],
         "API documentation" =>  "man/api.md"
     ]
