@@ -93,7 +93,7 @@ typeof(acorpus)
 
 # output
 
-CitableParserBuilder.AnalyzedToken
+AnalyticalCorpus
 ```
 
 ## The analyses
@@ -116,7 +116,7 @@ analyses[1] |> typeof
 
 # output
 
-AnalyzedToken
+CitableParserBuilder.AnalyzedToken
 ```
 
 ### Additional arguments
