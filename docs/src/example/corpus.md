@@ -116,7 +116,7 @@ analyses[1] |> typeof
 
 # output
 
-AnalyzedToken
+CitableParserBuilder.AnalyzedToken
 ```
 
 ### Additional arguments
