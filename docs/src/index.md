@@ -33,18 +33,21 @@ The following pages walk through examples using a small corpus comprising all th
 using CitableCorpusAnalysis
 using CitableCorpus
 using Orthography
+using CitableParserBuilder
 using HTTP
 # Load a CitableCorpus from a URL:
 url = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/dev/test/data/gettysburg/gettysburgcorpus.cex"
-corpus = HTTP.get(url).body |> String  |> corpus_fromcex
+corpus = HTTP.get(url).body |> corpus_fromcex
 # Instantiate an orthographic system and parser
 orthography = Orthography.simpleAscii()
-parser = CitableCorpusAnalysis.gettysburgParser()
+parser = CitableParserBuilder.gettysburgParser()
 acorpus = AnalyticalCorpus(corpus, orthography, parser)
 typeof(acorpus)
 
 # output
 
+[ Info: Loading dictionary over the internet...
+[ Info: Done loading.
 AnalyticalCorpus
 ```
 

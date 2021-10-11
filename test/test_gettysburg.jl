@@ -3,12 +3,12 @@
     f = "data/gettysburg/gettysburgcorpus.cex"
     c = read(f, String) |> corpus_fromcex
     ortho = simpleAscii()
-    parser = CitableCorpusAnalysis.gettysburgParser()
+    parser = CitableParserBuilder.gettysburgParser()
     acorpus = AnalyticalCorpus(c,ortho,parser)
     analyses = CitableCorpusAnalysis.analyzecorpus(acorpus, parser.data)
 
-    wdlist = tokenvalues(ortho,c)
-    tokenized = tokenizedcorpus(ortho,c)
+    wdlist = tokenvalues(c, ortho)
+    tokenized = tokenizedcorpus(c, ortho)
     @test length(analyses) == length(tokenized.passages)
     @test isa(analyses[1], AnalyzedToken)
 end
@@ -19,7 +19,7 @@ end
     f = "data/gettysburg/gettysburgcorpus.cex"
     c = read(f, String) |> corpus_fromcex
     ortho = simpleAscii()
-    parser = CitableCorpusAnalysis.gettysburgParser()
+    parser = CitableParserBuilder.gettysburgParser()
     acorpus = AnalyticalCorpus(c,ortho,parser)
     analyses = CitableCorpusAnalysis.analyzecorpus(acorpus, parser.data)
     registry = Dict(

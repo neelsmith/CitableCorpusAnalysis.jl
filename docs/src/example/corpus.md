@@ -74,13 +74,15 @@ OrthographicSystem
 The `CitableCorpusAnalysis` module includes an implementation of the `CitableParser` abstraction that can parse tokens in the Gettysburg Address to their corresponding Penn treebank POS code.  (For details on how the parser was constructed, see the appendix to this documentation.)
 
 ```jldoctest corpus
-using CitableCorpusAnalysis
-parser = CitableCorpusAnalysis.gettysburgParser()
+using CitableParserBuilder
+parser = CitableParserBuilder.gettysburgParser()
 typeof(parser) |> supertype
 
 # output
 
-CitableParserBuilder.CitableParser
+[ Info: Loading dictionary over the internet...
+[ Info: Done loading.
+CitableParser
 ```
 
 ### The analytical corpus
@@ -88,6 +90,7 @@ CitableParserBuilder.CitableParser
 Our analytical corpus associates these three components.
 
 ```jldoctest corpus
+using CitableCorpusAnalysis
 acorpus = AnalyticalCorpus(corpus, orthography, parser)
 typeof(acorpus)
 
@@ -102,32 +105,15 @@ The `analyzecorpus` function requires an `AnalyticalCorpus` as an argument. It f
 
 Our corpus has a total of 1506 tokens, so the result will have 1506 `AnalyzedToken`s.
 
-```jldoctest corpus
+```
 analyses = analyzecorpus(acorpus, parser.data)
-length(analyses)
-
-# output
-
-1506
 ```
 
-```jldoctest corpus
-analyses[1] |> typeof
-
-# output
-
-CitableParserBuilder.AnalyzedToken
-```
 
 ### Additional arguments
 
 The `analyzecorpus` function allows an optional `data` parameter that will passed along to the parsing functions it applies.  In this example, the `GettysburgParser` can use a dictionary of analyses to get better performance, since it otherwise loads the entire dictionary for each individual parse.
 
-```jldoctest corpus
+```
 fastanalyses = analyzecorpus(acorpus, parser.data)
-length(fastanalyses)
-
-# output
-
-1506
 ```
