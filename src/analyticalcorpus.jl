@@ -19,10 +19,10 @@ First analyze list of unique tokens into a dictionary.
 Then analyze each token successively.
 """
 function analyzecorpus(ac::AnalyticalCorpus, data)
-    wdlist = tokenvalues(ac.orthography,ac.corpus)
-    parses = parsewordlist(ac.parser, wdlist, data)
+    wdlist = tokenvalues(ac.corpus, ac.orthography)
+    parses = parsewordlist(wdlist, ac.parser, data)
     pairs = zip(wdlist, parses) |> collect |> Dict
-    tokenized = tokenizedcorpus(ac.orthography,ac.corpus)
+    tokenized = tokenizedcorpus(ac.corpus, ac.orthography)
 
     analyses = []
     for cn in tokenized.passages
