@@ -1,0 +1,10 @@
+Generic measurements on text corpora
+
+- number of (lexical) tokens
+- number of distinct tokens
+- number of lexemes recognized
+- number of tokens mapped to lexemes (token coverage)
+- nuber of distinct tokens mapped to lexemes (vocabulary coverage)
+- number of distinct forms related to vocabulary size (lexemes, distinct tokens) : morphological complexity
+
+
