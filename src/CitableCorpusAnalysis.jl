@@ -13,7 +13,8 @@ using TextAnalysis
 using Documenter, DocStringExtensions
 
 include("analyticalcorpus.jl")
-include("profiling.jl")
+include("profiling_ortho.jl")
+include("profiling_parsing.jl")
 include("tacorpus.jl")
 #include("tmcorpus.jl")
 
@@ -25,6 +26,6 @@ export tacorpus, talexicon, dtmatrix
 
 export tokenize, tokenizedcorpus, tokentuples
 export lexicalcorpus, lexicalsize
-export vocabulary, vocabularysize
+export vocabulary, vocabulary_size, vocabulary_density
 
 end # module
