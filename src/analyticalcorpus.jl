@@ -39,5 +39,5 @@ end
 
 
 function serialize_analyses(analysispairs, register, delimiter = "|")
-
+    error("NOT YET IMPLEMENTED")
 end
