@@ -26,7 +26,7 @@ function lexicalcorpus(ac::AnalyticalCorpus, lextype = LexicalToken())
     map(pr -> pr[1], lexonly) |> CitableTextCorpus
 end
 
-
+#=
 """Measure number of tokens of type `lextype`in the corpus.
 
 $(SIGNATURES)
@@ -35,6 +35,7 @@ function lexicalsize(ac::AnalyticalCorpus, lextype = LexicalToken())
     lc = lexicalcorpus(ac, lextype)
     length(lc.passages)
 end
+=#
 
 """Compile vocabulary list for corpus.
 
@@ -44,11 +45,22 @@ function vocabulary(ac::AnalyticalCorpus, lextype = LexicalToken())
     tokenvalues(ac.corpus, ac.orthography, lextype)
 end
 
-
 """Count number of distinct tokens in corpus.
 
 $(SIGNATURES)
 """
-function vocabularysize(ac::AnalyticalCorpus, lextype = LexicalToken())
+function vocabulary_size(ac::AnalyticalCorpus, lextype = LexicalToken())
     vocabulary(ac, lextype) |> length
+end
+
+
+"""Quoties of number of tokens and number of distinct tokens.
+
+$(SIGNATURES)
+Vocabulary density measures an "average" number of times each token is used.
+"""
+function vocabulary_density(ac::AnalyticalCorpus, lextype = LexicalToken())
+    lc = lexicalcorpus(ac, lextype)
+    total = length(lc.passages)
+    total / vocabulary_size(ac, lextype)
 end
