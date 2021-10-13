@@ -16,5 +16,12 @@
     lexcorpus = lexicalcorpus(ac)
     @test length(lexcorpus) == 1313
 
+    vocab = vocabulary(ac)
+    mostfrequent = "that"
+    # Sorted by frequency
+    @test vocab[1] == mostfrequent
+
+    @test vocabularysize(ac) == 151
+
     
 end

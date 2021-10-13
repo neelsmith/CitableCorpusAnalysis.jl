@@ -24,5 +24,7 @@ export tacorpus, talexicon, dtmatrix
 
 
 export tokenize, tokenizedcorpus, tokentuples
-export lexicalcorpus
+export lexicalcorpus, lexicalsize
+export vocabulary, vocabularysize
+
 end # module
