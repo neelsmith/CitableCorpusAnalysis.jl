@@ -1,4 +1,3 @@
-
 """Use orthography to create a tokenized corpus.
 
 $(SIGNATURES)
@@ -7,37 +6,16 @@ function tokenizedcorpus(ac::AnalyticalCorpus)
     tokenizedcorpus(ac.corpus, ac.orthography)
 end
 
-#=
-"""Create a Vector of tuples pairing citable passages with token types.
-
-$(SIGNATURES)
-"""
-function tokentuples(ac::AnalyticalCorpus)
-    tc = tokenizedcorpus(ac)
-    tokenize(tc, ac.orthography) 
-end
-=#
 
 """Create a new `CitableTextCorpus` containing only nodes of type `lextype`.
 
 $(SIGNATURES)
 """
-function lexicalcorpus(ac::AnalyticalCorpus, lextype = LexicalToken())
-    pairs = tokentuples(ac)
+function lexicalcorpus(ac::AnalyticalCorpus; lextype = LexicalToken())
+    pairs = tokenize(ac; filterby = lextype)
     lexonly = filter(pr -> pr[2] == lextype, pairs)
     map(pr -> pr[1], lexonly) |> CitableTextCorpus
 end
-
-#=
-"""Measure number of tokens of type `lextype`in the corpus.
-
-$(SIGNATURES)
-"""
-function lexicalsize(ac::AnalyticalCorpus, lextype = LexicalToken())
-    lc = lexicalcorpus(ac, lextype)
-    length(lc.passages)
-end
-=#
 
 """Compile vocabulary list for corpus.
 
@@ -54,17 +32,3 @@ $(SIGNATURES)
 function vocabulary_size(ac::AnalyticalCorpus; lextype = LexicalToken())
     vocabulary(ac; lextype =  lextype) |> length
 end
-
-#=
-
-"""Quoties of number of tokens and number of distinct tokens.
-
-$(SIGNATURES)
-Vocabulary density measures an "average" number of times each token is used.
-"""
-function vocabulary_density(ac::AnalyticalCorpus; lextype = LexicalToken())
-    lc = lexicalcorpus(ac, lextype)
-    total = length(lc.passages)
-    total / vocabulary_size(ac; lextype =  lextype)
-end
-=#
