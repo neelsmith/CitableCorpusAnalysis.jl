@@ -20,7 +20,7 @@ Then analyze each token successively.
 """
 function analyzecorpus(ac::AnalyticalCorpus, data)
     wdlist = tokenvalues(ac.corpus, ac.orthography)
-    parses = parsewordlist(wdlist, ac.parser, data)
+    parses = parsewordlist(wdlist, ac.parser; data = data)
     pairs = zip(wdlist, parses) |> collect |> Dict
     tokenized = tokenizedcorpus(ac.corpus, ac.orthography)
 

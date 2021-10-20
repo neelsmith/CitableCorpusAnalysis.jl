@@ -19,13 +19,13 @@ and,CC
 dedicated,VBD
 can,MD
 long,RB
-endure.,VB
+endure,VB
 We,PRP
 met,VBD
 on,IN
 battle-field,NN
 of,IN
-war.,NNS
+war,NNS
 have,VBP
 come,VBN
 to,TO
@@ -43,7 +43,7 @@ gave,VBD
 their,PRP$
 lives,NNS
 might,MD
-live.,VB
+live,VB
 It,PRP
 is,VBZ
 altogether,RB
@@ -58,7 +58,7 @@ sense,NN
 not,RB
 consecrate,VB
 hallow,NN
-ground.,NN
+ground,NN
 The,DT
 brave,NN
 men,NNS
@@ -73,7 +73,7 @@ our,PRP$
 poor,JJ
 power,NN
 add,IN
-detract.,JJ
+detract,JJ
 world,NN
 will,MD
 little,VB
@@ -87,7 +87,7 @@ never,RB
 forget,VBP
 they,PRP
 did,VBD
-here.,VB
+here,VB
 us,PRP
 the,DT
 rather,RB
@@ -145,10 +145,10 @@ equal,JJ
 resting,NN
 place,NN
 upon,IN
-advanced.,JJ
+advanced,JJ
 battlefield,NN
 carried,VBD
-on.,JJ
+on,JJ
 ;,:
 liberty,JJ
 battle,NN
