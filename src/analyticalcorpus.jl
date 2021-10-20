@@ -40,3 +40,12 @@ end
 function serialize_analyses(analysispairs, register, delimiter = "|")
     error("NOT YET IMPLEMENTED")
 end
+
+"""Tokenize text corpus.
+$(SIGNATURES)
+Returns a Vector of tuples pairing a `CitablePassage` with a `TokenCategory`.
+"""
+function tokenize(ac::AnalyticalCorpus; filterby = LexicalToken())
+    alltokens = tokenize(ac.corpus, ac.orthography)
+    isnothing(filterby) ? alltokens : filter(pr -> pr[2] == filterby, alltokens)
+end
