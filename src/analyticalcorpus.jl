@@ -18,10 +18,9 @@ $(SIGNATURES)
 First analyze list of unique tokens into a dictionary.
 Then analyze each token successively.
 """
-function analyzecorpus(ac::AnalyticalCorpus, data)
+function analyzecorpus(ac::AnalyticalCorpus; data = nothing)
     wdlist = tokenvalues(ac.corpus, ac.orthography)
-    parses = parsewordlist(wdlist, ac.parser, data)
-    pairs = zip(wdlist, parses) |> collect |> Dict
+    pairs = parsewordlist(wdlist, ac.parser; data = data)
     tokenized = tokenizedcorpus(ac.corpus, ac.orthography)
 
     analyses = []
@@ -39,5 +38,14 @@ end
 
 
 function serialize_analyses(analysispairs, register, delimiter = "|")
+    error("NOT YET IMPLEMENTED")
+end
 
+"""Tokenize text corpus.
+$(SIGNATURES)
+Returns a Vector of tuples pairing a `CitablePassage` with a `TokenCategory`.
+"""
+function tokenize(ac::AnalyticalCorpus; filterby = LexicalToken())
+    alltokens = tokenize(ac.corpus, ac.orthography)
+    isnothing(filterby) ? alltokens : filter(pr -> pr[2] == filterby, alltokens)
 end
