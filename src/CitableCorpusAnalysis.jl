@@ -24,7 +24,7 @@ export tacorpus, talexicon, dtmatrix
 #export tmcorpus
 
 
-export tokenize, tokenizedcorpus, tokentuples
+export tokenize, tokenizedcorpus
 export lexicalcorpus, lexicalsize
 export vocabulary, vocabulary_size, vocabulary_density
 

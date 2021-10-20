@@ -12,11 +12,11 @@
     tkns = tokenize(ac; filterby = LexicalToken())
     @test length(tc.passages) == length(tkns)
 
-    pairs = tokentuples(ac)
+    pairs = tokenize(ac; filterby = LexicalToken())
     @test length(tc.passages) == length(pairs)
 
     lexcorpus = lexicalcorpus(ac)
-    @test length(lexcorpus) == 1313
+    @test length(lexcorpus.passages) == 1313
 
     vocab = vocabulary(ac)
     mostfrequent = "that"
