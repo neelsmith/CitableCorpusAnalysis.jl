@@ -18,10 +18,9 @@ $(SIGNATURES)
 First analyze list of unique tokens into a dictionary.
 Then analyze each token successively.
 """
-function analyzecorpus(ac::AnalyticalCorpus, data)
+function analyzecorpus(ac::AnalyticalCorpus; data = nothing)
     wdlist = tokenvalues(ac.corpus, ac.orthography)
-    parses = parsewordlist(wdlist, ac.parser; data = data)
-    pairs = zip(wdlist, parses) |> collect |> Dict
+    pairs = parsewordlist(wdlist, ac.parser; data = data)
     tokenized = tokenizedcorpus(ac.corpus, ac.orthography)
 
     analyses = []
