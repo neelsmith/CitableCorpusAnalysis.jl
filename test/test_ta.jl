@@ -1,6 +1,7 @@
 @testset "Test converting a citable corpus to  a TextAnalysi.Corpus" begin
     f = "data/hyginus.cex"
-    c = read(f, String) |> corpus_fromcex
+    #c = read(f, String) |> corpus_fromcex
+    c = fromcex(f, CitableTextCorpus, FileReader)
     @test length(c.passages) == 1234
     tacorp = CitableCorpusAnalysis.tacorpus(c)
     @test length(tacorp.documents) == length(c.passages)

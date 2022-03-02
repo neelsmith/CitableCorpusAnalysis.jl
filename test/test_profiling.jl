@@ -1,7 +1,8 @@
 
 @testset "Test profiling a sample corpus" begin
     f = "data/gettysburg/gettysburgcorpus.cex"
-    c = read(f, String) |> corpus_fromcex
+    #c = read(f, String) |> corpus_fromcex
+    c = fromcex(f, CitableTextCorpus, FileReader)
     ortho = simpleAscii()
     dictsrc = "data/posdict.csv"
     parserdict = CSV.File(dictsrc) |> Dict

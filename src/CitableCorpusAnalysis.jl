@@ -4,6 +4,7 @@ module CitableCorpusAnalysis
 import Orthography: tokenize
 import Orthography: tokenizedcorpus
 
+using CitableBase
 using CitableText, CitableCorpus
 using Orthography
 using CitableParserBuilder
