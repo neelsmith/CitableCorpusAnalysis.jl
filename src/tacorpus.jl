@@ -4,7 +4,7 @@
 $(SIGNATURES)
 """
 function tacorpus(c::CitableTextCorpus)
-    docs = map(cn -> StringDocument(cn.text), c.passages)
+    docs = map(cn -> StringDocument(string(cn.text)), c.passages)
     TextAnalysis.Corpus(docs)
 end
 
