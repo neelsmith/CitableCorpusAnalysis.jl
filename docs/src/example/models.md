@@ -38,12 +38,12 @@ The `TextAnalysis` module has a variety of functions for basic metrics on a text
 ## `TopicModelsVB.Corpus`
 
 
-You can convert this to the `Corpus` model of Julia's `TopicModelsVB` module.
+You can convert a `CitableTextCorpus` with a specified orthography to the `Corpus` model of Julia's `TopicModelsVB` module. The `tmcorpus` function will use the specified `OrthographicSystem` to tokenize the corpus correctly before building the `TopicModelsVB.Corpus`.
 
 ```@example models
-tm_corp = tmcorpus(corpus)
+using Orthography
+ortho = simpleAscii()
+tm_corp = tmcorpus(corpus, ortho)
 ```
 
-The `TopicModelsVB` module implements several algorithms for variational Bayesian topic modeling.
-
-See [documentation for `TopicModelsVB`](https://github.com/ericproffitt/TopicModelsVB.jl).
+The `TopicModelsVB` module implements several algorithms for variational Bayesian topic modeling.  See [documentation for `TopicModelsVB`](https://github.com/ericproffitt/TopicModelsVB.jl).
