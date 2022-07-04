@@ -2,16 +2,16 @@
 
 > *Tokenize and analyze a citable text corpus*.
 
-There are many ways to model a text corpus.  `CitableCorpusAnalysis` integrates models from these Julia modules:
+There are many ways to model a text corpus.  The `CitableCorpusAnalysis` module integrates the following models from other Julia modules:
 
 - `Corpus` in `TextAnalysis`
+- `Corpus` in `TopicModelsVB`
 - `CitableTextCorpus` in `CitableCorpus`
 
 It also introduces a further model, the `AnalyticalCorpus`.
 
 
 ## Overview of an analytical corpus
-
 
 
 An `AnalyticalCorpus` has three components:
@@ -29,25 +29,19 @@ The following pages walk through examples using a small corpus comprising all th
 
 
 
-```jldoctest overview
+```@example
 using CitableCorpusAnalysis
-using CitableCorpus
+using CitableCorpus, CitableBase
 using Orthography
 using CitableParserBuilder
 using HTTP
 # Load a CitableCorpus from a URL:
 url = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/dev/test/data/gettysburg/gettysburgcorpus.cex"
-corpus = HTTP.get(url).body |> corpus_fromcex
+corpus = fromcex(url,CitableTextCorpus,UrlReader)
 # Instantiate an orthographic system and parser
 orthography = Orthography.simpleAscii()
 parser = CitableParserBuilder.gettysburgParser()
 acorpus = AnalyticalCorpus(corpus, orthography, parser)
 typeof(acorpus)
-
-# output
-
-[ Info: Loading dictionary over the internet...
-[ Info: Done loading.
-AnalyticalCorpus
 ```
 

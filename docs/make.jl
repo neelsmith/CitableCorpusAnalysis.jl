@@ -4,7 +4,7 @@
 #
 # Run this from repository root to serve:
 #
-#   julia -e 'using LiveServer; serve(dir="docs/build")'julia -e 'using LiveServer; serve(dir="docs/build")' 
+#   julia -e 'using LiveServer; serve(dir="docs/build")'
 #
 using Pkg
 Pkg.activate(".")
@@ -20,6 +20,7 @@ makedocs(
         "Overview" => "index.md",
         "Example" => [
             "example/corpus.md",
+            "example/models.md",
             "example/profiling.md"
         ],
         "API documentation" =>  "man/api.md"
