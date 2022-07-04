@@ -11,10 +11,11 @@ We start with a corpus citable by CTS URN. In these examples, we'll work with a 
 We can load the source data into the `CitableTextCorpus` model from a URL.  The `corpus_cex` function works on string data, so we will use standard Julia methods to load a String from the URL.
 
 ```jldoctest corpus
-using CitableCorpus
+using CitableBase, CitableCorpus
 using HTTP
 corpusurl = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/dev/test/data/gettysburg/gettysburgcorpus.cex"
-corpus = HTTP.get(corpusurl).body |> String  |> corpus_fromcex
+corpus_src = HTTP.get(corpusurl).body |> String 
+corpus = fromcex(corpus_src, CitableTextCorpus)
 typeof(corpus)
 
 # output

@@ -31,13 +31,14 @@ The following pages walk through examples using a small corpus comprising all th
 
 ```jldoctest overview
 using CitableCorpusAnalysis
-using CitableCorpus
+using CitableCorpus, CitableBase
 using Orthography
 using CitableParserBuilder
 using HTTP
 # Load a CitableCorpus from a URL:
 url = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/dev/test/data/gettysburg/gettysburgcorpus.cex"
-corpus = HTTP.get(url).body |> corpus_fromcex
+corpus_src = HTTP.get(url).body
+corpus = fromcex(corpus_src,CitableTextCorpus)
 # Instantiate an orthographic system and parser
 orthography = Orthography.simpleAscii()
 parser = CitableParserBuilder.gettysburgParser()
