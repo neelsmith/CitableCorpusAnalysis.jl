@@ -13,8 +13,8 @@ $(SIGNATURES)
 """
 function lexicalcorpus(ac::AnalyticalCorpus; lextype = LexicalToken())
     pairs = tokenize(ac; filterby = lextype)
-    lexonly = filter(pr -> pr[2] == lextype, pairs)
-    map(pr -> pr[1], lexonly) |> CitableTextCorpus
+    lexonly = filter(tkn -> tkn.tokentype == lextype, pairs)
+    map(pr -> pr.passage, lexonly) |> CitableTextCorpus
 end
 
 """Compile vocabulary list for corpus.

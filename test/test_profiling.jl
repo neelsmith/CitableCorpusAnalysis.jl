@@ -1,23 +1,20 @@
 
 @testset "Test profiling a sample corpus" begin
-    f = "data/gettysburg/gettysburgcorpus.cex"
-    #c = read(f, String) |> corpus_fromcex
+    f = joinpath(pwd(), "data","gettysburg","gettysburgcorpus.cex")
     c = fromcex(f, CitableTextCorpus, FileReader)
     ortho = simpleAscii()
-    dictsrc = "data/posdict.csv"
+    dictsrc = joinpath(pwd(), "data","posdict.csv")
     parserdict = CSV.File(dictsrc) |> Dict
     parser = CitableParserBuilder.gettysburgParser(dict = parserdict)
     ac = AnalyticalCorpus(c,ortho,parser)
 
     tc = tokenizedcorpus(ac)
+    @test length(tc.passages) == 1506
     tkns = tokenize(ac; filterby = LexicalToken())
-    @test length(tc.passages) == length(tkns)
-
-    pairs = tokenize(ac; filterby = LexicalToken())
-    @test length(tc.passages) == length(pairs)
+    @test length(tkns)== 1313
 
     lexcorpus = lexicalcorpus(ac)
-    @test length(lexcorpus.passages) == 1313
+    @test length(lexcorpus.passages) == length(tkns)
 
     vocab = vocabulary(ac)
     mostfrequent = "that"
