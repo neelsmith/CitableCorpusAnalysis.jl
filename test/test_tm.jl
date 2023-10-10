@@ -1,6 +1,6 @@
 @testset "Test builidng Topic Model corpus" begin
-    f = "data/hyginus.cex"
+    f = joinpath(pwd(), "data","hyginus.cex")
     c = fromcex(f, CitableTextCorpus, FileReader)
-    tmcorp = tmcorpus(c)
+    tmcorp = tmcorpus(c, simpleAscii())
     @test length(tmcorp.docs) == length(c.passages)
 end
