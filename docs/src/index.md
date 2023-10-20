@@ -34,7 +34,7 @@ using CitableCorpusAnalysis
 using CitableCorpus, CitableBase
 using Orthography
 using CitableParserBuilder
-using HTTP
+
 # Load a CitableCorpus from a URL:
 url = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/dev/test/data/gettysburg/gettysburgcorpus.cex"
 corpus = fromcex(url,CitableTextCorpus,UrlReader)
