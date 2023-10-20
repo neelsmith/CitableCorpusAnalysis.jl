@@ -10,6 +10,7 @@ using Orthography
 using CitableParserBuilder
 using TextAnalysis
 
+import Base: show
 
 using Documenter, DocStringExtensions
 
@@ -22,6 +23,9 @@ include("topicmodel.jl")
 export AnalyticalCorpus
 export analyzecorpus, serialize_analyses
 export tacorpus, talexicon, dtmatrix
+
+export TopicModel
+export lda_tm
 
 
 
