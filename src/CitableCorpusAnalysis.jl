@@ -26,6 +26,7 @@ export tacorpus, talexicon, dtmatrix
 
 export TopicModel
 export lda_tm
+export labeltopic
 
 
 
