@@ -19,6 +19,7 @@ function show(io::IO, tm::TopicModel)
 
     print(io,msg)
 end
+ 
 
 """Create a `TopicModel` of text in corpus `c` with `k` topics."""
 function lda_tm(c::CitableTextCorpus, k::Int; 
@@ -50,17 +51,65 @@ function lda_tm(c::CitableTextCorpus, k::Int;
    
 end
 
-"""Compose a human-readable label for a topic by catting together
-the top `count` term values.
-"""
-function labeltopic(tm::TopicModel, topicnum::Int; count = 4)
-	pairs = top_scores(tm.topic_terms[topicnum,:], tm.terms)
-	join(map(pr -> pr[1], pairs)[1:count], "_")
+"""Find number of topics in model (conventionally, `k`)."""
+function k(tm::TopicModel)
+    size(tm.topic_terms)[1]
 end
 
 
+"""Compose human-readable labels for all topics by catting together
+the top `count` term values.
+"""
+function topiclabels(tm::TopicModel; count = 4)
+    labels = []
+    for tpcnum in 1:k(tm)
+        pairs = top_scores(tm.topic_terms[tpcnum,:], tm.terms; n = count)
+        push!(labels, join(map(pr -> pr[1], pairs)[1:count], "_"))
+    end
+	labels	
+end
+
+"""Find index in vector of topics for topic with label `lbl`."""
+function topicindex(tm::TopicModel, lbl::String)
+    n = split(lbl, "_") |> length
+    labels = topiclabels(tm; count = n)
+    findfirst(l -> l == lbl, labels)
+end
+
+"""Find index in vector of documents for document with ID `docid`."""
+function documentindex(tm::TopicModel, docid::String)
+    findfirst(id -> id == docid,  tm.docids)
+end
 
 
+"""Find index of `term` in vector of terms."""
+function termindex(tm::TopicModel, term::String)
+    findfirst(s -> s == term,  tm.terms)
+end
+
+"""Compose a human-readable label for a topic by catting together
+the top `count` term values.
+"""
+function topiclabel(tm::TopicModel, topicnum::Int; count = 4)
+	pairs = top_scores(tm.topic_terms[topicnum,:], tm.terms; n = count)
+	join(map(pr -> pr[1], pairs)[1:count], "_")
+end
+
+"""Find top `n` terms for topic number `topicnum`."""
+function topterms(tm::TopicModel, topicnum::Int; n = 10)
+    top_scores(tm.topic_terms[topicnum,:], tm.terms; n = n)
+end
+
+"""Find top `n` documents for topic number `topicnum`."""
+function topdocs(tm::TopicModel, topicnum::Int; n = 10)
+    top_scores(tm.topic_docs[topicnum,:], tm.docids; n = n)
+end
+
+
+"""Find all topic scores for document number `docnum`."""
+function topicsfordoc(tm::TopicModel, docnum::Int)
+    tm.topic_docs[:,docnum]
+end
 
 ### "Private" functions
 
@@ -85,8 +134,6 @@ function isolatescores(scorelists, n)
     end
     flatresults
 end
-
-
 
 """Given one row of a topic index, find top `n` scores,
 and return a Vector of `n` pairs of topic relations and scores."""

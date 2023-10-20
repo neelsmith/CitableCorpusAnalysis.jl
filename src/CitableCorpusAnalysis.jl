@@ -26,8 +26,8 @@ export tacorpus, talexicon, dtmatrix
 
 export TopicModel
 export lda_tm
-export labeltopic
-
+export k, topiclabel, topiclabels, topterms, topdocs, topicsfordoc
+export topicindex, documentindex, termindex
 
 
 export tokenize, tokenizedcorpus
