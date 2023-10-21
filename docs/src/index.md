@@ -2,13 +2,15 @@
 
 > *Tokenize and analyze a citable text corpus*.
 
-There are many ways to model a text corpus.  The `CitableCorpusAnalysis` module integrates the following models from other Julia modules:
+There are many ways to model a text corpus.  The `CitableCorpusAnalysis` module integrates two models from other Julia modules:
 
 - `Corpus` in `TextAnalysis`
-- `Corpus` in `TopicModelsVB`
 - `CitableTextCorpus` in `CitableCorpus`
 
-It also introduces a further model, the `AnalyticalCorpus`.
+One application of this integration is to allow LDA topic modeling (from the `TextAnalysis` package) to operate on a `CitableTextCorpus`.
+
+
+`CitableCorpusAnalysis.jl` also introduces a further model, the `AnalyticalCorpus`.
 
 
 ## Overview of an analytical corpus
