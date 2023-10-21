@@ -21,7 +21,7 @@ makedocs(
         "Example" => [
             "example/corpus.md",
             "example/models.md",
-            "example/topicmodling.md",
+            "example/topicmodeling.md",
             "example/profiling.md"
         ],
         "API documentation" =>  "man/api.md"
