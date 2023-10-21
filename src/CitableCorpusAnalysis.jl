@@ -9,7 +9,8 @@ using CitableText, CitableCorpus
 using Orthography
 using CitableParserBuilder
 using TextAnalysis
-using TopicModelsVB
+
+import Base: show
 
 using Documenter, DocStringExtensions
 
@@ -17,12 +18,17 @@ include("analyticalcorpus.jl")
 include("profiling_ortho.jl")
 include("profiling_parsing.jl")
 include("tacorpus.jl")
-include("tmcorpus.jl")
+include("topicmodel.jl")
 
 export AnalyticalCorpus
 export analyzecorpus, serialize_analyses
 export tacorpus, talexicon, dtmatrix
-export tmcorpus
+
+export TopicModel
+export lda_tm
+export k, topiclabel, topiclabels, topterms, topdocs, topicsfordoc
+export topicindex, documentindex, termindex
+export topicfordoc
 
 
 export tokenize, tokenizedcorpus

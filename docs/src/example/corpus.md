@@ -43,30 +43,20 @@ OrthographicSystem
 
 The `CitableCorpusAnalysis` module includes an implementation of the `CitableParser` abstraction that can parse tokens in the Gettysburg Address to their corresponding Penn treebank POS code.  (For details on how the parser was constructed, see the appendix to this documentation.)
 
-```jldoctest corpus
+```@example corpus
 using CitableParserBuilder
 parser = CitableParserBuilder.gettysburgParser()
 typeof(parser) |> supertype
-
-# output
-
-[ Info: Loading dictionary over the internet...
-[ Info: Done loading.
-CitableParser
 ```
 
 ### The analytical corpus
 
 Our analytical corpus associates these three components.
 
-```jldoctest corpus
+```@example corpus
 using CitableCorpusAnalysis
 acorpus = AnalyticalCorpus(corpus, orthography, parser)
 typeof(acorpus)
-
-# output
-
-AnalyticalCorpus
 ```
 
 ## The analyses
