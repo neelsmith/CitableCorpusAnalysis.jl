@@ -28,6 +28,7 @@ export TopicModel
 export lda_tm
 export k, topiclabel, topiclabels, topterms, topdocs, topicsfordoc
 export topicindex, documentindex, termindex
+export topicfordoc
 
 
 export tokenize, tokenizedcorpus

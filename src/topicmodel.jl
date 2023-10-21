@@ -111,6 +111,12 @@ function topicsfordoc(tm::TopicModel, docnum::Int)
     tm.topic_docs[:,docnum]
 end
 
+
+function topicfordoc(tm::TopicModel, docnum::Int; count = 4)
+    top_scores(tm.topic_docs[:, docnum], topiclabels(tm; count = count), n = 1)[1]
+end
+
+
 ### "Private" functions
 
 """Find top `n` scores in `datalist`, and return corresponding values from `labelslist`.
