@@ -28,6 +28,7 @@ length(stopwords)
 We can now create a 20-topic model for the corpus with the `lda_tm` function.
 
 ```@example tm
+using CitableCorpusAnalysis
 tm = lda_tm(corpus, 20; stopwords = stopwords)
 ```
 
