@@ -10,15 +10,11 @@ We start with a corpus citable by CTS URN. In these examples, we'll work with a 
 
 We can load the source data into the `CitableTextCorpus` model from a URL.  The `corpus_cex` function works on string data, so we will use standard Julia methods to load a String from the URL.
 
-```jldoctest corpus
+```@example corpus
 using CitableBase, CitableCorpus
 corpusurl = "https://raw.githubusercontent.com/neelsmith/CitableCorpusAnalysis.jl/dev/test/data/gettysburg/gettysburgcorpus.cex"
 corpus = fromcex(corpusurl, CitableTextCorpus, UrlReader)
 typeof(corpus)
-
-# output
-
-CitableTextCorpus
 ```
 
 
@@ -29,14 +25,10 @@ CitableTextCorpus
 
 The `Orthography` module includes a simple ASCII orthography that we can use with our Gettsyburg corpus.
 
-```jldoctest corpus
+```@example corpus
 using Orthography
 orthography = simpleAscii()
 typeof(orthography) |> supertype
-
-# output
-
-OrthographicSystem
 ```
 
 ### Morphology
