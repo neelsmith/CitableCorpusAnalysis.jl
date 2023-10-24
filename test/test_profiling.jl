@@ -10,7 +10,7 @@
 
     tc = tokenizedcorpus(ac)
     @test length(tc.passages) == 1506
-    tkns = tokenize(ac; filterby = LexicalToken())
+    tkns = tokenize(ac, ortho; filterby = LexicalToken())
     @test length(tkns)== 1313
 
     lexcorpus = lexicalcorpus(ac)
