@@ -100,8 +100,9 @@ topicfordoc(tm, 1)
 ```
 
 
-Label and score of all `n` highest-scoring topics for a given document:
+Function to label and score of all `n` highest-scoring topics for a given document is currentl broken!
 
 ```@example tm
-topdocs(tm, 1; n = 5)
+#topdocs(tm, 1; n = 5)
 ```    
+
