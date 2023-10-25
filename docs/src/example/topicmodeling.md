@@ -29,11 +29,11 @@ rm(stopfile)
 length(stopwords)
 ```
 
-We can now create a model for the corpus.  We'll  iterate 500 times and create 20 topics.
+We can now create a model for the corpus.  We'll  iterate 50 times and create 20 topics.
 
 ```@example tm
 using CitableCorpusAnalysis
-tm = lda_tm(corpus, 20; stopwords = stopwords, iters = 500)
+tm = lda_tm(corpus, 20; stopwords = stopwords, iters = 50)
 ```
 
 The resulting `TopicModel` object has four fields.
@@ -100,8 +100,9 @@ topicfordoc(tm, 1)
 ```
 
 
-Label and score of all `n` highest-scoring topics for a given document:
+Function to label and score of all `n` highest-scoring topics for a given document is currentl broken!
 
 ```@example tm
-topdocs(tm, 1; n = 5)
+#topdocs(tm, 1; n = 5)
 ```    
+

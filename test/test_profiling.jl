@@ -10,9 +10,8 @@
 
     tc = tokenizedcorpus(ac)
     @test length(tc.passages) == 1506
-    tkns = tokenize(ac; filterby = LexicalToken())
+    tkns = filter(tkn -> tkn.tokentype == LexicalToken(), Orthography.tokenize(tc, ortho))
     @test length(tkns)== 1313
-
     lexcorpus = lexicalcorpus(ac)
     @test length(lexcorpus.passages) == length(tkns)
 
